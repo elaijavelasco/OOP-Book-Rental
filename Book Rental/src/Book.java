@@ -7,7 +7,7 @@ public class Book {
     public void open_shop () {
         System.out.println ("Book Rental System");
         while (true) {
-            System.out.println("Book Rental Menu")
+            System.out.println("Book Rental Menu");
             System.out.println ("1 - View available books");
             System.out.println ("2 - Add book");
             System.out.println ("3 - Rent books");
