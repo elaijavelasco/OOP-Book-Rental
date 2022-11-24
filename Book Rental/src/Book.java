@@ -51,8 +51,8 @@ public class Book {
                 rent_books();
             break;
 
-            case RENTED_BOOKS:
-                rented_books();
+            case VIEW_RENTED_BOOKS:
+                view_rented_books();
             break;
 
             case CLOSE_SHOP:
@@ -151,7 +151,39 @@ public class Book {
             bk.total -= quantity;
             books.set(num, bk);
             System.out.println("You have successfully rented " + quantity + "books!");
-            Rent.add(new Rent(bk.book_title, quantity));
+            rent.add(new Rent(bk.book_title, quantity));
         }
     }
+    public void view_rented_books() {
+        if (rent.isEmpty()) {
+            System.out.println("You have not rented any books yet.");
+            return;
+        }
+        System.out.println("Rented Books");
+        for (int i = 0; i < rent.size(); i++) {
+            print((i + 1) + ".)");
+            rent.get(i).print();
+        }
+    }
+    public void close_shop() {
+        System.exit(0);
+    }
+    private void print(String message) {
+        System.out.print(message);
+    }
+    private static final int DISPLAY_BOOKS = 1;
+    private static final int ADD_BOOKS = 2;
+    private static final int RENT_BOOKS = 3;
+    private static final int VIEW_RENTED_BOOKS = 4;
+    private static final int CLOSE_SHOP = 5;
+
+    private static final int SCIENCE_FICTION = 1;
+    private static final int THRILLER = 2;
+    private static final int FANTASY = 3;
+    private static final int POETRY = 4;
+    private static final int ROMANCE = 5;
+    private static final int SELF_HELP = 6;
+
+    ArrayList<Rent> rent = new ArrayList<>();
+    ArrayList<Book> books = new ArrayList<>();
 }
