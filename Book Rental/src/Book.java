@@ -111,6 +111,47 @@ public class Book {
         System.out.println("1 - Self-Help");
         int choice = 0;
         while (true) {
-
+            String input;
+            try {
+                input = Input.string("Enter choice: ");
+                choice = Integer.parseInt(input);
+                if (choice < 1 || choice > 4) {
+                    throw new ChoiceException();
+                }
+                break;
+            }
+            catch(ChoiceException c) {
+                System.out.print ("Invalid entry! Enter a choice from 1 to 5.");
+            }
         }
+        return choice;
+    }
+    private void rent_books() {
+        if (books.isEmpty()) {
+            System.out.print ("No books available for rent.");
+            return;
+        }
+        display_books("Select book to rent");
+        int num = Input.number ("Enter book number: ")-1;
+        if (num >= books.size() || num < 0) {
+            System.out.println("Invalid input!");
+            return;
+        }
+        Book bk = books.get(num);
+        int quantity = Input.number("Enter the quantity of books to be rented: ");
+        if (quantity == 0) {
+            System.out.println("You're not able to rent 0 books");
+            return;
+        }
+        if (quantity > bk.total) {
+            System.out.println("You're not able to rent " + quantity + " books. ");
+            return;
+        }
+        else {
+            bk.total -= quantity;
+            books.set(num, bk);
+            System.out.println("You have successfully rented " + quantity + "books!");
+            Rent.add(new Rent(bk.book_title, quantity));
+        }
+    }
 }
