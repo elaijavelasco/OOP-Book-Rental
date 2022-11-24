@@ -3,7 +3,7 @@ import java.util.*;
 import models.*;
 import utils.*;
 
-public class Book {
+public class Rental {
     public void open_shop () {
         System.out.println ("Book Rental System");
         while (true) {
@@ -96,7 +96,7 @@ public class Book {
             break;
 
             case SELF_HELP:
-                books.add(new Self_Help());
+                books.add(new SelfHelp());
             break;
         }
         System.out.println("Successfully added!");
