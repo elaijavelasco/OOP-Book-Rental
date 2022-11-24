@@ -73,17 +73,44 @@ public class Book {
         }
     }
     private void add_books() {
-        System.out.println("Select a book genre to add.");
         switch(select_book()) {
-            case FICTION:
-                books.add(new Fiction());
-            break:
 
             case SCIENCE_FICTION:
                 books.add(new ScienceFiction());
             break;
 
-            case THRILLER
+            case THRILLER:
+                books.add(new Thriller());
+            break;
+
+            case FANTASY:
+                books.add(new Fantasy());
+            break;
+
+            case POETRY:
+                books.add(new Poetry());
+            break;
+
+            case ROMANCE:
+                books.add(new Romance());
+            break;
+
+            case SELF_HELP:
+                books.add(new Self_Help());
+            break;
         }
+        System.out.println("Successfully added!");
     }
+    private int select_book() {
+        System.out.println("Select a book genre to add.");
+        System.out.println("1 - Science Fiction");
+        System.out.println("2 - Thriller");
+        System.out.println("1 - Fantasy");
+        System.out.println("1 - Poetry");
+        System.out.println("1 - Romance");
+        System.out.println("1 - Self-Help");
+        int choice = 0;
+        while (true) {
+
+        }
 }
