@@ -3,7 +3,7 @@ import java.util.*;
 import models.*;
 import utils.*;
 
-public class Rental {
+public class Rental{
     public void open_shop () {
         System.out.println ("Book Rental System");
         while (true) {
