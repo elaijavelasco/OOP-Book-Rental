@@ -5,14 +5,14 @@ import utils.*;
 
 public class Rental{
     public void open_shop () {
-        System.out.println ("Book Rental System");
+        println ("Book Rental System");
         while (true) {
-            System.out.println("Book Rental Menu");
-            System.out.println ("1 - View available books");
-            System.out.println ("2 - Add book");
-            System.out.println ("3 - Rent books");
-            System.out.println ("4 - Display rented books");
-            System.out.println ("5 - Close");
+            println ("Book Rental Menu");
+            println ("1 - View available books");
+            println ("2 - Add book");
+            println ("3 - Rent books");
+            println ("4 - Display rented books");
+            println ("5 - Close");
             input_choice();
         }
     }
@@ -22,17 +22,17 @@ public class Rental{
             try {
                 choice = Input.string("What do you want to do? ");
                 int i = Integer.parseInt (choice);
-                if(i < 1 || i < 5) {
+                if(i < 1 || i > 5) {
                     throw new ChoiceException();
                 }
                 execute_choice(i);
                 break;
             }
             catch(NumberFormatException e){
-                System.out.println("Invalid entry! Input must be a number.");
+                println("Invalid entry! Input must be a number.");
             }
             catch(ChoiceException c){
-                System.out.println("Invalid entry! Enter a choice from 1 to 5.");
+                println("Invalid entry! Choice should be from the ff: [1,2,3,4,5].");
             }
         }
     }
@@ -62,13 +62,13 @@ public class Rental{
     }
     private void display_books (String extra){
         if (books.isEmpty()) {
-            System.out.println("No available books to be rented.");
+            println("No available books to be rented.");
             return;
         }
         Collections.sort(books);
-        System.out.println("Available Books" + extra);
+        println("Available Books" + extra);
         for (int i = 0; i < books.size(); i++) {
-            System.out.println ((i + 1) + ".) ");
+            println ((i + 1) + ".) ");
             books.get(i).print();
         }
     }
@@ -99,16 +99,16 @@ public class Rental{
                 books.add(new SelfHelp());
             break;
         }
-        System.out.println("Successfully added!");
+        println("Successfully added!");
     }
     private int select_book() {
-        System.out.println("Select a book genre to add.");
-        System.out.println("1 - Science Fiction");
-        System.out.println("2 - Thriller");
-        System.out.println("1 - Fantasy");
-        System.out.println("1 - Poetry");
-        System.out.println("1 - Romance");
-        System.out.println("1 - Self-Help");
+        println("Select a book genre to add.");
+        println("1 - Science Fiction");
+        println("2 - Thriller");
+        println("1 - Fantasy");
+        println("1 - Poetry");
+        println("1 - Romance");
+        println("1 - Self-Help");
         int choice = 0;
         while (true) {
             String input;
@@ -121,45 +121,45 @@ public class Rental{
                 break;
             }
             catch(ChoiceException c) {
-                System.out.print ("Invalid entry! Enter a choice from 1 to 5.");
+                print ("Invalid entry! Enter a choice from 1 to 5.");
             }
         }
         return choice;
     }
     private void rent_books() {
         if (books.isEmpty()) {
-            System.out.print ("No books available for rent.");
+            println ("No books available for rent.");
             return;
         }
         display_books("Select book to rent");
         int num = Input.number ("Enter book number: ")-1;
         if (num >= books.size() || num < 0) {
-            System.out.println("Invalid input!");
+            println("Invalid input!");
             return;
         }
         Book bk = books.get(num);
         int quantity = Input.number("Enter the quantity of books to be rented: ");
         if (quantity == 0) {
-            System.out.println("You're not able to rent 0 books");
+            println("You're not able to rent 0 books");
             return;
         }
         if (quantity > bk.total) {
-            System.out.println("You're not able to rent " + quantity + " books. ");
+            println("You're not able to rent " + quantity + " books. ");
             return;
         }
         else {
             bk.total -= quantity;
             books.set(num, bk);
-            System.out.println("You have successfully rented " + quantity + "books!");
+            println("You have successfully rented " + quantity + "books!");
             rent.add(new Rent(bk.book_title, quantity));
         }
     }
     public void view_rented_books() {
         if (rent.isEmpty()) {
-            System.out.println("You have not rented any books yet.");
+            println("You have not rented any books yet.");
             return;
         }
-        System.out.println("Rented Books");
+        println("Rented Books");
         for (int i = 0; i < rent.size(); i++) {
             print((i + 1) + ".)");
             rent.get(i).print();
@@ -171,6 +171,10 @@ public class Rental{
     private void print(String message) {
         System.out.print(message);
     }
+    private void println(String message){
+        System.out.println(message);
+    }
+
     private static final int DISPLAY_BOOKS = 1;
     private static final int ADD_BOOKS = 2;
     private static final int RENT_BOOKS = 3;
