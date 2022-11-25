@@ -5,14 +5,16 @@ import utils.*;
 
 public class Rental{
     public void open_shop () {
-        println ("Book Rental System");
+        println ("\n\n\n\t\t\t    ****** Book Rental System ******");
         while (true) {
-            println ("Book Rental Menu");
-            println ("1 - View available books");
-            println ("2 - Add book");
-            println ("3 - Rent books");
-            println ("4 - Display rented books");
-            println ("5 - Close");
+            println("\n\t\t\t_________________________________________\n");
+            println ("\t\t\t\t\tMain Menu\n");
+            println ("\t\t\t\t (1) View available books");
+            println ("\t\t\t\t (2) Add book");
+            println ("\t\t\t\t (3) Rent books");
+            println ("\t\t\t\t (4) Display rented books");
+            println ("\t\t\t\t (5) Close");
+            println("\n\t\t\t_________________________________________\n");
             input_choice();
         }
     }
@@ -20,7 +22,7 @@ public class Rental{
         while(true) {
             String choice;
             try {
-                choice = Input.string("What do you want to do? ");
+                choice = Input.string("\t\t\t\tWhat do you want to do? ");
                 int i = Integer.parseInt (choice);
                 if(i < 1 || i > 5) {
                     throw new ChoiceException();
@@ -29,10 +31,10 @@ public class Rental{
                 break;
             }
             catch(NumberFormatException e){
-                println("Invalid entry! Input must be a number.");
+                println("\n\t\t\tInvalid entry! Input must be a number.\n");
             }
             catch(ChoiceException c){
-                println("Invalid entry! Choice should be from the ff: [1,2,3,4,5].");
+                println("\n\t\t\tInvalid entry! Enter a choice from 1 to 5.");
             }
         }
     }
@@ -62,11 +64,11 @@ public class Rental{
     }
     private void display_books (String extra){
         if (books.isEmpty()) {
-            println("No available books to be rented.");
+            println("\n\t\t\t [!] No books available for rent.\n");
             return;
         }
         Collections.sort(books);
-        println("Available Books" + extra);
+        println("\n\t\tAvailable Books" + extra);
         for (int i = 0; i < books.size(); i++) {
             println ((i + 1) + ".) ");
             books.get(i).print();
@@ -87,10 +89,6 @@ public class Rental{
                 books.add(new Fantasy());
             break;
 
-            case POETRY:
-                books.add(new Poetry());
-            break;
-
             case ROMANCE:
                 books.add(new Romance());
             break;
@@ -99,39 +97,38 @@ public class Rental{
                 books.add(new SelfHelp());
             break;
         }
-        println("Successfully added!");
+        println("\n\t\t\t [1] Books successfully added.\n");
     }
     private int select_book() {
-        println("Select a book genre to add.");
-        println("1 - Science Fiction");
-        println("2 - Thriller");
-        println("1 - Fantasy");
-        println("1 - Poetry");
-        println("1 - Romance");
-        println("1 - Self-Help");
+        println("\n\t\tAdd Book:\n");
+        println("\t\t\t1 - Science Fiction");
+        println("\t\t\t2 - Thriller");
+        println("\t\t\t3 - Fantasy");
+        println("\t\t\t4 - Romance");
+        println("\t\t\t5 - Self-Help");
         int choice = 0;
         while (true) {
             String input;
             try {
-                input = Input.string("Enter choice: ");
+                input = Input.string("\n\t\tEnter choice: ");
                 choice = Integer.parseInt(input);
-                if (choice < 1 || choice > 4) {
+                if (choice < 1 || choice > 5) {
                     throw new ChoiceException();
                 }
                 break;
             }
             catch(ChoiceException c) {
-                print ("Invalid entry! Enter a choice from 1 to 5.");
+                print ("\n\t\t\tInvalid entry! Enter a choice from 1 to 5.\n");
             }
         }
         return choice;
     }
     private void rent_books() {
         if (books.isEmpty()) {
-            println ("No books available for rent.");
+            println ("\n\t\t\t [!] No books available for rent.\n");
             return;
         }
-        display_books("Select book to rent");
+        display_books("\nRent Book\n");
         int num = Input.number ("Enter book number: ")-1;
         if (num >= books.size() || num < 0) {
             println("Invalid input!");
@@ -140,23 +137,23 @@ public class Rental{
         Book bk = books.get(num);
         int quantity = Input.number("Enter the quantity of books to be rented: ");
         if (quantity == 0) {
-            println("You're not able to rent 0 books");
+            println("\t\tYou're not able to rent 0 books");
             return;
         }
         if (quantity > bk.total) {
-            println("You're not able to rent " + quantity + " books. ");
+            println("\t\tYou're not able to rent " + quantity + " books. ");
             return;
         }
         else {
             bk.total -= quantity;
             books.set(num, bk);
-            println("You have successfully rented " + quantity + "books!");
+            println("\t\tYou have successfully rented " + quantity + " books!");
             rent.add(new Rent(bk.book_title, quantity));
         }
     }
     public void view_rented_books() {
         if (rent.isEmpty()) {
-            println("You have not rented any books yet.");
+            println("\n\t\tYou have not rented any books yet.");
             return;
         }
         println("Rented Books");
@@ -184,9 +181,8 @@ public class Rental{
     private static final int SCIENCE_FICTION = 1;
     private static final int THRILLER = 2;
     private static final int FANTASY = 3;
-    private static final int POETRY = 4;
-    private static final int ROMANCE = 5;
-    private static final int SELF_HELP = 6;
+    private static final int ROMANCE = 4;
+    private static final int SELF_HELP = 5;
 
     ArrayList<Rent> rent = new ArrayList<>();
     ArrayList<Book> books = new ArrayList<>();
