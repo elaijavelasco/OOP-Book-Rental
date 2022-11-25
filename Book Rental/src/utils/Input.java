@@ -16,7 +16,7 @@ public class Input {
             try{
                 return Integer.parseInt(input);
             }catch(NumberFormatException e){
-                System.out.print("Enter a valid number: ");
+                System.out.print("\n\t\t\tEnter a valid number: ");
             }
         }
     }

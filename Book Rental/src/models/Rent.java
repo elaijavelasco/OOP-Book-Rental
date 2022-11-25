@@ -9,6 +9,6 @@ public class Rent {
     private int quantity;
 
     public void print() {
-        System.out.println(book_title + "," + quantity + " copies");
+        System.out.println(book_title + ", " + quantity + " copies");
     }
 }
