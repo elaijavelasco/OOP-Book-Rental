@@ -1,9 +1,17 @@
+/* 
+    CS 211: Object-Oriented Programming
+    Option 2: Book Rental System
+    Velasco, Elaija Heart B.
+    IT 2101
+*/
+
 import java.util.*;
 
 import models.*;
 import utils.*;
 
 public class Rental{
+//Method for opening the system
     public void open_shop () {
         println ("\n\n\t\t\t    ****** Book Rental System ******");
         while (true) {
@@ -17,11 +25,14 @@ public class Rental{
             println ("\n\t\t\t_________________________________________\n");
             input_choice();
         }
-    }
+    } //end of method open_shop()
+    
+//Method for inputting choice
     private void input_choice() {
         while(true) {
             String choice;
             try {
+            //input choice
                 choice = Input.string("\t\t\tWhat do you want to do? ");
                 int i = Integer.parseInt (choice);
                 if(i < 1 || i > 5) {
@@ -37,8 +48,9 @@ public class Rental{
                 println("\n\t\t\tInvalid entry! Enter a choice from 1 to 5.\n");
             }
         }
-    }
+    } //end of method input_choice()
 
+//Method for executing choice 1,2,3,4, or 5
     private void execute_choice (int option) {
         switch (option) {
             case DISPLAY_BOOKS:
@@ -62,7 +74,9 @@ public class Rental{
             System.exit(0);
             break;
         }
-    }
+    } //end of method execute_choice()
+
+// Method for displaying books
     private void display_books (String extra){
         if (books.isEmpty()) {
             println("\n\t\t\t No available books yet...");
@@ -75,6 +89,7 @@ public class Rental{
             books.get(i).print();
         }
     }
+//Method for adding books
     private void add_books() {
         switch(select_book()) {
 
@@ -100,6 +115,8 @@ public class Rental{
         }
         println("\n\t\t\tBooks successfully added!\n");
     }
+
+//Method for selecting book to add
     private int select_book() {
         println("\n\t\t\t\t\t***Add Book***\n");
         println("\t\t\t\t (1) Science Fiction");
@@ -111,6 +128,7 @@ public class Rental{
         while (true) {
             String input;
             try {
+            //input choice from select book menu
                 input = Input.string("\n\t\t\tEnter choice: ");
                 choice = Integer.parseInt(input);
                 if (choice < 1 || choice > 5) {
@@ -123,18 +141,22 @@ public class Rental{
             }
         }
         return choice;
-    }
+    } //end of method select_book()
+
+//Method for renting a book
     private void rent_books() {
         if (books.isEmpty()) {
             println ("\n\t\t\t [!] No books available for rent.\n");
             return;
         }
+    //input book number
         display_books("\n\t\t\tSelect book you want to rent: \n");
         int num = Input.number ("\n\t\t\tEnter book number: ")-1;
         if (num >= books.size() || num < 0) {
             println("\n\t\t\tInvalid input!");
             return;
         }
+    //input book quantity
         Book bk = books.get(num);
         int quantity = Input.number("\n\t\t\tQuantity of book you want to rent: ");
         if (quantity == 0) {
@@ -151,7 +173,9 @@ public class Rental{
             println("\n\t\t\tYou have successfully rented " + quantity + " books!");
             rent.add(new Rent(bk.book_title, quantity));
         }
-    }
+    } //end of method rent_books()
+
+//Method for displaying rented books
     public void view_rented_books() {
         if (rent.isEmpty()) {
             println("\n\t\t\tYou have not rented any books yet...");
@@ -162,7 +186,8 @@ public class Rental{
             print("\t\t\t\t (" + (i + 1) + ") ");
             rent.get(i).print();
         }
-    }
+    } //end of method view_rented_books()
+
     public void close_shop() {
         System.exit(0);
     }
