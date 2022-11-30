@@ -11,8 +11,8 @@ import models.*;
 import utils.*;
 
 public class Rental{
-//Method for opening the system
-    public void open_shop () {
+//method for opening the system
+    public void app_menu () {
         println ("\n\n\t\t\t    ****** Book Rental System ******");
         while (true) {
             println ("\n\t\t\t_________________________________________\n");
@@ -25,22 +25,25 @@ public class Rental{
             println ("\n\t\t\t_________________________________________\n");
             input_choice();
         }
-    } //end of method open_shop()
+    } //end of method app_menu()
     
-//Method for inputting choice
+//private method for inputting choice 
     private void input_choice() {
         while(true) {
             String choice;
             try {
             //input choice
                 choice = Input.string("\t\t\tWhat do you want to do? ");
-                int i = Integer.parseInt (choice);
+                int i = Integer.parseInt (choice); //returns integer
                 if(i < 1 || i > 5) {
                     throw new ChoiceException();
                 }
-                execute_choice(i);
+
+            //inputted choice will be passed to the paramenter 'i' of execute_choice() method
+                execute_choice(i); 
                 break;
             }
+        //handle input errors
             catch(NumberFormatException e){
                 println("\n\t\t\tInvalid entry! Input must be a number.\n");
             }
@@ -50,7 +53,7 @@ public class Rental{
         }
     } //end of method input_choice()
 
-//Method for executing choice 1,2,3,4, or 5
+//private method for executing inputted choice 1,2,3,4, or 5
     private void execute_choice (int option) {
         switch (option) {
             case DISPLAY_BOOKS:
@@ -76,7 +79,7 @@ public class Rental{
         }
     } //end of method execute_choice()
 
-// Method for displaying books
+//private method for displaying books
     private void display_books (String extra){
         if (books.isEmpty()) {
             println("\n\t\t\t No available books yet...");
@@ -89,7 +92,7 @@ public class Rental{
             books.get(i).print();
         }
     }
-//Method for adding books
+//private method for adding books
     private void add_books() {
         switch(select_book()) {
 
@@ -116,7 +119,7 @@ public class Rental{
         println("\n\t\t\tBooks successfully added!\n");
     }
 
-//Method for selecting book to add
+//private method for selecting book to add
     private int select_book() {
         println("\n\t\t\t\t\t***Add Book***\n");
         println("\t\t\t\t (1) Science Fiction");
@@ -175,7 +178,7 @@ public class Rental{
         }
     } //end of method rent_books()
 
-//Method for displaying rented books
+//method for displaying rented books
     public void view_rented_books() {
         if (rent.isEmpty()) {
             println("\n\t\t\tYou have not rented any books yet...");
