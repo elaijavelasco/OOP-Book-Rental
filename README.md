@@ -1,11 +1,11 @@
 # Book Rental System
 
-# Description
+# 🗒️ Description
 
-# Features
+# 📋 Features
 + Displays available books
 + Adds new book
 + Rent book
 + Display rented books
 
-# How to Run the program
+# 💻 How to Run the program
