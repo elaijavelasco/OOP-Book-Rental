@@ -11,4 +11,9 @@ Final Project in CS 211 - Object-Oriented Programming
 + Display rented books
 
 # 💻 How to Run the program
-1. 
+1. Click [Book Rental System](https://github.com/elaijavelasco/OOP-Book-Rental.git) to be directed to the project's repository
+2. Click on the Code button, then download the repository as ZIP file.
+3. Locate the downloaded ZIP file, likely in your Downloads folder, and unzip it.
+4. Open the unzipped or the extracted folder and find **App.java** file.
+5. Open the file via any IDE that supports Java programming language.
+6. Then, run the file to launch the application.
