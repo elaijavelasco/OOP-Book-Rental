@@ -1,10 +1,3 @@
-/* 
-    CS 211: Object-Oriented Programming
-    Option 2: Book Rental System
-    Velasco, Elaija Heart B.
-    IT 2101
-*/
-
 import java.util.*;
 
 //imports packages that contain user-defined classes
