@@ -2,7 +2,7 @@
 Final Project in CS 211 - Object-Oriented Programming
 
 # 🗒️ Description
-**Book Rental System** is a console application coded in Java programming language. This program uses 
+**Book Rental System** is a console application coded in Java programming language. 
 
 # 📋 Features
 + Displays available books
